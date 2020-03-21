@@ -8,18 +8,20 @@ public class Other64 {
 
     public static void main(String[] args) {
         Other64 other64 = new Other64();
-        System.out.println(other64.hammingWeight(-3));
+        System.out.println(other64.hammingWeight(3));
     }
 
     // you need to treat n as an unsigned value
     public int hammingWeight(int n) {
-        int ret = 0;
-        for (char c : Integer.toBinaryString(n).toCharArray()) {
-            if (c == '1') {
-                ret++;
+        int count = 0;
+        int mask = 1;
+        for (int i = 0; i < 32; i++) {
+            if ((n & mask) != 0) {
+                count++;
             }
+            mask <<= 1;
         }
-        return ret;
+        return count;
     }
 
 
